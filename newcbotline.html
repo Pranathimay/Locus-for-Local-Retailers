@@ -1,0 +1,550 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LOCUS FOR LOCAL RETAILERS</title>
+    <style>
+        body {
+			background: url('https://img.freepik.com/free-photo/abstract-blur-empty-green-gradient-studio-well-use-as-background-website-template-frame-business-report_1258-52616.jpg?w=2000');
+         padding: 0;
+		font-family: Arial, sans-serif;
+    }
+		.row{
+			display:flex;
+		}
+		
+		.half-width{
+			width:60%;
+		}
+		.half-widths{
+			width:30%;
+		}
+		.row{
+			display:flex;
+		}
+
+		.col-hgt{
+			max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+		}
+            .popup {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.4);
+            }
+
+        .popup-content {
+            background-color: #ba5370;
+            margin: 15% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 30%;
+        }
+
+        .close-button {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .close-button:hover,
+        .close-button:focus {
+            color: #000;
+            text-decoration: none;
+            cursor: pointer;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+		.rt-container {
+            max-width: 400px;
+            margin: 0 auto;
+        }
+
+        .chat-history {
+	     width: 100%;
+            background-color: #f7f7f7;
+            padding: 10px;
+            height: 400px;
+            overflow-y: scroll;
+            margin-bottom: 10px;
+        }
+
+        .user-input {
+            width: 100%;
+            padding: 10px;
+            box-sizing: border-box;
+        }
+		.feedback{
+    width: 100%;
+    max-width: 780px;
+	background:url("https://img.freepik.com/premium-photo/blank-blue-cement-wall-texture-background_7190-199.jpg");
+    background: #;
+    margin: 0 auto;
+    padding: 15px;
+    box-shadow: 1px 1px 16px rgba(0, 0, 0, 0.3);
+}
+.survey-hr{
+  margin:10px 0;
+  border: .5px solid #ddd;
+}
+.star-rating {
+   margin: 25px 0 0px;
+  font-size: 0;
+  white-space: nowrap;
+  display: inline-block;
+  width: 175px;
+  height: 35px;
+  overflow: hidden;
+  position: relative;
+  background: url('data:image/svg+xml;base64,PHN2ZyB2ZXJzaW9uPSIxLjEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHg9IjBweCIgeT0iMHB4IiB3aWR0aD0iMjBweCIgaGVpZ2h0PSIyMHB4IiB2aWV3Qm94PSIwIDAgMjAgMjAiIGVuYWJsZS1iYWNrZ3JvdW5kPSJuZXcgMCAwIDIwIDIwIiB4bWw6c3BhY2U9InByZXNlcnZlIj48cG9seWdvbiBmaWxsPSIjREREREREIiBwb2ludHM9IjEwLDAgMTMuMDksNi41ODMgMjAsNy42MzkgMTUsMTIuNzY0IDE2LjE4LDIwIDEwLDE2LjU4MyAzLjgyLDIwIDUsMTIuNzY0IDAsNy42MzkgNi45MSw2LjU4MyAiLz48L3N2Zz4=');
+  background-size: contain;
+}
+.star-rating i {
+  opacity: 0;
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 20%;
+  z-index: 1;
+  background: url('data:image/svg+xml;base64,PHN2ZyB2ZXJzaW9uPSIxLjEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHg9IjBweCIgeT0iMHB4IiB3aWR0aD0iMjBweCIgaGVpZ2h0PSIyMHB4IiB2aWV3Qm94PSIwIDAgMjAgMjAiIGVuYWJsZS1iYWNrZ3JvdW5kPSJuZXcgMCAwIDIwIDIwIiB4bWw6c3BhY2U9InByZXNlcnZlIj48cG9seWdvbiBmaWxsPSIjRkZERjg4IiBwb2ludHM9IjEwLDAgMTMuMDksNi41ODMgMjAsNy42MzkgMTUsMTIuNzY0IDE2LjE4LDIwIDEwLDE2LjU4MyAzLjgyLDIwIDUsMTIuNzY0IDAsNy42MzkgNi45MSw2LjU4MyAiLz48L3N2Zz4=');
+  background-size: contain;
+}
+.star-rating input {
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  opacity: 0;
+  display: inline-block;
+  width: 20%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  z-index: 2;
+  position: relative;
+}
+.star-rating input:hover + i,
+.star-rating input:checked + i {
+  opacity: 1;
+}
+.star-rating i ~ i {
+  width: 40%;
+}
+.star-rating i ~ i ~ i {
+  width: 60%;
+}
+.star-rating i ~ i ~ i ~ i {
+  width: 80%;
+}
+.star-rating i ~ i ~ i ~ i ~ i {
+  width: 100%;
+}
+.choice {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  text-align: center;
+  padding: 20px;
+  display: block;
+}
+.read-more {
+    color: blue;
+    cursor: pointer;
+    margin-left: 5px;
+}
+span.scale-rating{
+margin: 5px 0 15px;
+    display: inline-block;
+   
+    width: 100%;
+   
+}
+span.scale-rating>label {
+  position:relative;
+    -webkit-appearance: none;
+  outline:0 !important;
+    border: 1px solid grey;
+    height:33px;
+    margin: 0 5px 0 0;
+  width: calc(10% - 7px);
+    float: left;
+  cursor:pointer;
+}
+span.scale-rating label {
+  position:relative;
+    -webkit-appearance: none;
+  outline:0 !important;
+    height:33px;
+      
+    margin: 0 5px 0 0;
+  width: calc(10% - 7px);
+    float: left;
+  cursor:pointer;
+}
+span.scale-rating input[type=radio] {
+  position:absolute;
+    -webkit-appearance: none;
+  opacity:0;
+  outline:0 !important;
+    /border-right: 1px solid grey;/
+    height:33px;
+ 
+    margin: 0 5px 0 0;
+  
+  width: 100%;
+    float: left;
+  cursor:pointer;
+  z-index:3;
+}
+span.scale-rating label:hover{
+background:#fddf8d;
+}
+span.scale-rating input[type=radio]:last-child{
+border-right:0;
+}
+span.scale-rating label input[type=radio]:checked ~ label{
+    -webkit-appearance: none;
+
+    margin: 0;
+  background:#fddf8d;
+}
+span.scale-rating label:before
+{
+  content:attr(value);
+    top: 7px;
+    width: 100%;
+    position: absolute;
+    left: 0;
+    right: 0;
+    text-align: center;
+    vertical-align: middle;
+  z-index:2;
+}
+    </style>
+</head>
+<body>
+  <div class="row">
+    <div class="half-width containers"> 
+  </div>   <div class="half-widths containers">     <h4 style="text-align:right;"><a href="/">Logout</a></h4>
+<button style="float: right;" id="about-button">About</button>  <!-- Added "About" button -->
+  </div></div> 
+<div id="about-popup" class="popup">
+        <div class="popup-content">
+            <span class="close-button">&times;</span>
+            <h2>About Chatbot</h2>
+            <p>Too lazy to go out shopping?<br>Too busy to browse online shops?<br>Use this chatbot to filter your preferances and access trustworthy local retailing shops on instagram.</p>
+        </div>
+    </div>
+  <div class="row">
+  <div class="half-width col-hgt"> 
+        <h1>LOCUS FOR LOCAL RETAILERS</h1>
+        <div class="chat-history" id="chat-history"></div>
+        <textarea class="user-input" id="user-input" rows="3" placeholder="Type your message here"></textarea>
+        <button id="send-button">Send</button>
+        <button id="clear-button">Clear Chat</button>
+    </div>
+	 <div class="half-widths col-hgt">
+        <h1>Feedback</h1> 
+ 
+<section>
+    <div class="rt-container">
+          <div class="col-rt-12">
+              <div class="Scriptcontent">
+              
+       
+<div class="feedback">
+<p>Dear Customer,<p>
+
+<h4>Please rate your service experience for the following parameters</h4>
+
+<form method="post" action="/feedback">
+<label>1. Your overall experience with us ?</label><br>
+  
+<span class="star-rating">
+  <input type="radio" name="rating1" value="1"><i></i>
+  <input type="radio" name="rating1" value="2"><i></i>
+  <input type="radio" name="rating1" value="3"><i></i>
+  <input type="radio" name="rating1" value="4"><i></i>
+  <input type="radio" name="rating1" value="5"><i></i>
+</span>
+ 
+  <div class="clear"></div> 
+  <hr class="survey-hr">
+<label>2. Friendliness and courtesy shown to you while delivery of your Answers</label><br>
+  <div style="color:grey">
+    <span style="float:left">
+     POOR
+    </span>
+    <span style="float:right">
+      BEST
+    </span>
+    
+  </div>
+<span class="scale-rating">
+  <label value="1">
+  <input type="radio" name="rating" >
+  <label style="width:100%;"></label>
+  </label>
+  <label value="2">
+  <input type="radio" name="rating" >
+  <label style="width:100%;"></label>
+  </label>
+  <label value="3">
+  <input type="radio" name="rating">
+  <label style="width:100%;"></label>
+  </label>
+  <label value="4">
+  <input type="radio" name="rating">
+  <label style="width:100%;"></label>
+  </label>
+  <label value="5">
+  <input type="radio" name="rating">
+  <label style="width:100%;"></label>
+  </label>
+  <label value="6">
+  <input type="radio" name="rating">
+  <label style="width:100%;"></label>
+  </label>
+  <label value="7">
+  <input type="radio" name="rating">
+  <label style="width:100%;"></label>
+  </label>
+  <label value="8">
+  <input type="radio" name="rating">
+  <label style="width:100%;"></label>
+  </label>
+  <label value="9">
+  <input type="radio" name="rating">
+  <label style="width:100%;"></label>
+  </label>
+  <label value="10">
+  <input type="radio" name="rating" value="10">
+  <label style="width:100%;"></label>
+  </label>
+</span>
+
+  <div class="clear"></div> 
+  <hr class="survey-hr"> 
+<label>3. Any Other suggestions:</label><br/>
+<textarea class="user-input" cols="75" name="commentText" rows="5" ></textarea><br>
+<br>
+  <div class="clear"></div> 
+<input style="background:#43a7d5;color:#fff;padding:12px;border:0" type="submit" value="Submit your review">&nbsp;
+</form>
+                  </div>
+           
+    		</div>
+		</div>
+    </div>
+</section>
+     
+    </div> 
+	</div>
+
+    <script>
+        const chatHistory = document.getElementById('chat-history');
+        const userInput = document.getElementById('user-input');
+        const sendButton = document.getElementById('send-button');
+        const clearButton = document.getElementById('clear-button');
+
+        sendButton.addEventListener('click', () => {
+            const inputText = userInput.value.trim();
+            if (inputText !== '') {
+                appendMessage('You', inputText);
+                userInput.value = '';
+                // Send the user input to the server
+                fetch('/chat', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/x-www-form-urlencoded',
+                    },
+                    body: 'user_input=' + encodeURIComponent(inputText),
+                })
+                .then(response => response.text())
+                .then(data => {
+			  appendChatbotResponse(data);
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                });
+            }
+        });
+
+        userInput.addEventListener('keydown', (event) => {
+            if (event.key === 'Enter' && !event.shiftKey) {
+                event.preventDefault();
+                sendButton.click();
+            }
+        });
+        clearButton.addEventListener('click', () => {
+         	chatHistory.innerHTML = '';
+    		// Clear the user input list
+    		fetch('/clear')
+		.then(response => {
+            	userInputList = [];
+        	})
+        	.catch(error => {
+            	console.error('Error:', error);
+        	});
+	});
+
+        
+
+        window.addEventListener('DOMContentLoaded', () => {
+            const initialMessage = "Welcome! How can I assist you today?";
+            setTimeout(() => {
+                appendMessage('Chatbot', initialMessage);
+            }, 1000); // Delay the initial message for 1 second after the page loads
+        });
+
+        function appendMessage(sender, message) {
+            const messageElement = document.createElement('p');
+            messageElement.innerText = `${sender}: `;
+            if (message.includes(',')) {
+                const index = message.indexOf(',');
+                const truncatedMessage = message.substring(0, index + 1);
+                const remainingMessage = message.substring(index + 1);
+
+                const truncatedText = document.createTextNode(truncatedMessage);
+                const remainingText = document.createTextNode(remainingMessage);
+
+                messageElement.appendChild(truncatedText);
+
+                const readMoreLink = document.createElement('span');
+                readMoreLink.className = 'read-more';
+                readMoreLink.innerText = '...Read More';
+                readMoreLink.addEventListener('click', () => {
+                messageElement.removeChild(readMoreLink);
+                messageElement.appendChild(remainingText);
+                const readLessLink = document.createElement('span');
+                readLessLink.className = 'read-more';
+                readLessLink.innerText = ' Read Less';
+                readLessLink.addEventListener('click', () => {
+                    messageElement.removeChild(readLessLink);
+                    messageElement.removeChild(remainingText);
+                    messageElement.appendChild(readMoreLink);
+                });
+                messageElement.appendChild(readLessLink);
+                });
+
+                messageElement.appendChild(readMoreLink);
+            } else {
+                const textNode = document.createTextNode(message);
+                messageElement.appendChild(textNode);
+            }
+			
+            chatHistory.appendChild(messageElement);
+            chatHistory.scrollTop = chatHistory.scrollHeight;
+        }
+		function appendMessage1(message) {
+            const messageElement = document.createElement('p');
+            if (message.includes(' ,')) {
+                const index = message.indexOf(' ,');
+                const truncatedMessage = message.substring(0, index + 1);
+                const remainingMessage = message.substring(index + 1);
+
+                const truncatedText = document.createTextNode(truncatedMessage);
+                const remainingText = document.createTextNode(remainingMessage);
+
+                messageElement.appendChild(truncatedText);
+
+                const readMoreLink = document.createElement('span');
+                readMoreLink.className = 'read-more';
+                readMoreLink.innerText = '...Read More';
+                readMoreLink.addEventListener('click', () => {
+                messageElement.removeChild(readMoreLink);
+                messageElement.appendChild(remainingText);
+                const readLessLink = document.createElement('span');
+                readLessLink.className = 'read-more';
+                readLessLink.innerText = ' Read Less';
+                readLessLink.addEventListener('click', () => {
+                    messageElement.removeChild(readLessLink);
+                    messageElement.removeChild(remainingText);
+                    messageElement.appendChild(readMoreLink);
+                });
+                messageElement.appendChild(readLessLink);
+                });
+
+                messageElement.appendChild(readMoreLink);
+            } else {
+                const textNode = document.createTextNode(message);
+                messageElement.appendChild(textNode);
+            }
+
+            chatHistory.appendChild(messageElement);
+            chatHistory.scrollTop = chatHistory.scrollHeight;
+        }
+		function appendChatbotResponse(response) {
+		  const parts = response.split(/[\n]+/); // Split response by newline or space characters
+			  appendMessage('Chatbot', parts[0]);
+			  
+			  if (parts.length > 1) {
+				const remainingParts = parts.slice(1);
+				const messageElement = document.createElement('p');
+				
+				const readMoreLink = document.createElement('span');
+				readMoreLink.className = 'read-more';
+				readMoreLink.innerText = '...Read More';
+				readMoreLink.addEventListener('click', () => {
+				  messageElement.removeChild(readMoreLink);
+				  
+				  for (const part of remainingParts) {
+					const partElement = document.createElement('p');
+					partElement.innerText = part;
+					messageElement.appendChild(partElement);
+				  }
+				  
+				  const readLessLink = document.createElement('span');
+				  readLessLink.className = 'read-more';
+				  readLessLink.innerText = ' Read Less';
+				  readLessLink.addEventListener('click', () => {
+					messageElement.removeChild(readLessLink);
+					
+					for (const part of remainingParts) {
+					  const partElement = document.createElement('p');
+					  partElement.innerText = part;
+					  messageElement.removeChild(partElement);
+					}
+					
+					messageElement.appendChild(readMoreLink);
+				  });
+				  
+				  messageElement.appendChild(readLessLink);
+				});
+				
+				messageElement.appendChild(readMoreLink);
+				chatHistory.appendChild(messageElement);
+			  }
+			  
+			  chatHistory.scrollTop = chatHistory.scrollHeight;
+		}
+const aboutButton = document.getElementById('about-button');
+        const aboutPopup = document.getElementById('about-popup');
+        const closePopupButton = aboutPopup.querySelector('.close-button');
+
+        // Show the popup when the About button is clicked
+        aboutButton.addEventListener('click', () => {
+            aboutPopup.style.display = 'block';
+        });
+
+        // Hide the popup when the close button is clicked
+        closePopupButton.addEventListener('click', () => {
+            aboutPopup.style.display = 'none';
+        });
+
+    </script>
+</body>
+</html>
